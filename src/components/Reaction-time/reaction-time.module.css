@@ -1,0 +1,30 @@
+.red {
+  background-color: var(--red);
+}
+
+.blue {
+  background-color: var(--primary-blue);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 500;
+}
+
+.area {
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
+
+.gameEnd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
