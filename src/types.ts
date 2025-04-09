@@ -7,3 +7,5 @@ export type GameInfo = {
   content: string;
   icon: ReactNode;
 };
+
+export type GameStatus = "TooFast" | "Waiting" | "End" | "Initial" | "Score";
