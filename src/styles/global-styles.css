@@ -1,0 +1,66 @@
+:root {
+  --primary-blue: rgb(43, 135, 209);
+  --light-blue: rgb(69, 177, 255);
+  --very-light-blue: #e6e8f4;
+  --white: #fff;
+  --black: #000;
+  --yellow: rgb(255, 209, 84);
+  --gray: #e9e9e9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: var(--very-light-blue);
+}
+
+h1 {
+  font-size: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0rem 2rem;
+}
+
+.game-area {
+  background-color: var(--primary-blue);
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  p {
+    font-size: 24px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 2rem;
+  color: white;
+}
+
+button {
+  background-color: var(--yellow);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 18px;
+  color: var(--black);
+  font-weight: 600;
+}

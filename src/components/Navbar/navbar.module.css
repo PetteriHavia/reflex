@@ -1,0 +1,13 @@
+.link {
+  font-size: 18px;
+  padding: 1rem 1rem;
+  display: inline-block;
+}
+
+.wrapper {
+  background-color: var(--white);
+}
+
+.link:hover {
+  background-color: var(--gray);
+}
