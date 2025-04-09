@@ -3,6 +3,10 @@ import GameArea from "../Layout/GameArea";
 import styles from "./reaction-time.module.css";
 import { FaRegClock } from "react-icons/fa";
 import { GameStatus } from "../../types";
+import { BsThreeDots } from "react-icons/bs";
+import { TbExclamationMark } from "react-icons/tb";
+import { HiCursorClick } from "react-icons/hi";
+import Message from "./Message";
 
 const ReactionTime = () => {
   const [score, setScore] = useState<number | null>(null);
@@ -61,12 +65,25 @@ const ReactionTime = () => {
     }
   };
 
+  const getMessage = () => {
+    switch (status) {
+      case "Initial":
+        return { text: "Click To Start" };
+      case "TooFast":
+        return { text: "Too Fast! Try Again", icon: <TbExclamationMark /> };
+      case "Waiting":
+        return { text: "Wait for green", icon: <BsThreeDots /> };
+      case "End":
+        return { text: "Click!", icon: <HiCursorClick /> };
+      default:
+        return;
+    }
+  };
+
   return (
     <div>
       <GameArea background={background} onClick={handeClick}>
-        {status === "Initial" && <p>Press to start</p>}
-        {status === "Waiting" && <p>Wait for green...</p>}
-        {status === "TooFast" && <p>Too Fast!</p>}
+        {<Message msg={getMessage()} />}
         {status === "Score" && score !== null && (
           <div className={styles.gameEnd}>
             <FaRegClock size={80} color="white" />
