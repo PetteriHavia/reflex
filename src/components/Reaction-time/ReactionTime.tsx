@@ -16,17 +16,17 @@ const ReactionTime = () => {
 
   useEffect(() => {
     let timeID: number;
-
     if (status === "Waiting") {
       setScore(null);
       setStartTime(null);
       setBackground(styles.red);
+      const delay = Math.random() * (5000 - 2000) + 2000;
 
       timeID = setTimeout(() => {
         setBackground(styles.green);
         setStartTime(Date.now);
         setStatus("End");
-      }, 3000);
+      }, delay);
     }
 
     return () => {
