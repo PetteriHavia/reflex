@@ -1,8 +1,5 @@
 .wrapper {
   background-color: var(--primary-blue);
-  p {
-    font-size: 24px;
-  }
 }
 
 .content {

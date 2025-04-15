@@ -1,3 +1,38 @@
-.number {
+.currentNumber {
   font-size: 5rem;
+}
+
+span {
+  color: var(--white-transparent);
+  font-size: 20px;
+}
+
+.level {
+  font-size: 60px;
+}
+
+.numbers {
+  font-size: 40px;
+}
+
+.incorrect {
+  text-decoration: line-through;
+  color: var(--black);
+}
+
+input {
+  padding: 10px;
+  background: var(--bg-transparent);
+  width: 100%;
+  outline-style: none;
+  text-align: center;
+  color: var(--white);
+  font-size: 50px;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 3px;
+
+  &:focus {
+    border-color: var(--light-blue);
+  }
 }

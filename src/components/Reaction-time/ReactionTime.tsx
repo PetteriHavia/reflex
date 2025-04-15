@@ -88,7 +88,7 @@ const ReactionTime = () => {
           <div className={styles.gameEnd}>
             <FaRegClock size={80} color="white" />
             <h1>{score} ms</h1>
-            <p>Click to keep going</p>
+            <h2>Click to keep going</h2>
           </div>
         )}
       </GameArea>
