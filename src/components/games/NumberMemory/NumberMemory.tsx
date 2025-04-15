@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GameArea from "../../Layout/GameArea";
-import { useState } from "react";
 import { GameStatus } from "../../../types";
 import { TbNumbers } from "react-icons/tb";
 import styles from "./number-memory.module.css";
@@ -8,7 +7,7 @@ import styles from "./number-memory.module.css";
 const NumberMemory = () => {
   const [number, setNumber] = useState<string | null>(null);
   const [previousNumber, setPreviousNumber] = useState<string>("");
-  const [score, setScore] = useState<number>(0);
+  const [score, setScore] = useState<number>(1);
   const [status, setStatus] = useState<GameStatus>("Initial");
   const [digitCount, setDigitCount] = useState<number>(1);
 
@@ -43,44 +42,53 @@ const NumberMemory = () => {
   };
 
   const checkAnswer = () => {
-    if (previousNumber === number) {
+    const isCorrect = previousNumber === number;
+    if (isCorrect) {
       setScore((prev) => prev + 1);
       setDigitCount((prev) => prev + 1);
-      setStatus("Score");
-      return;
     }
     setStatus("Score");
   };
 
   return (
     <GameArea>
-      <div className="container-inner">
+      <>
         {status === "Initial" && (
           <>
             <div className="icon">
               <TbNumbers size={80} color="white" />
             </div>
             <h1>Number Memory</h1>
-            <p>The average person can remember 7 numbers at once. Can you do more?</p>
+            <h2>The average person can remember 7 numbers at once. Can you do more?</h2>
             <button onClick={handleStart}>Start</button>
           </>
         )}
-        {status === "Waiting" && <p className={styles.number}>{number}</p>}
+        {status === "Waiting" && <p className={styles.currentNumber}>{number}</p>}
         {status === "End" && (
           <>
-            <p>What was the number?</p>
-            <small>Press enter to submit</small>
-            <input value={previousNumber} type="text" onChange={(e) => setPreviousNumber(e.target.value)} />
+            <div className="">
+              <h2>What was the number?</h2>
+              <span>Press enter to submit</span>
+            </div>
+            <input
+              value={previousNumber}
+              type="text"
+              autoFocus
+              onChange={(e) => setPreviousNumber(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") checkAnswer();
+              }}
+            />
             <button onClick={checkAnswer}>Submit</button>
           </>
         )}
         {status === "Score" && (
           <>
-            <p>Number</p>
-            <p>{number}</p>
-            <p>Your answer</p>
-            <p>{previousNumber}</p>
-            <p>Level {score}</p>
+            <span>Number</span>
+            <p className={styles.numbers}>{number}</p>
+            <span>Your answer</span>
+            <p className={`${styles.numbers} ${previousNumber === number ? "" : styles.incorrect}`}>{previousNumber}</p>
+            <p className={styles.level}>Level {score}</p>
             {previousNumber === number ? (
               <button onClick={() => setStatus("Waiting")}>Next</button>
             ) : (
@@ -88,7 +96,7 @@ const NumberMemory = () => {
             )}
           </>
         )}
-      </div>
+      </>
     </GameArea>
   );
 };

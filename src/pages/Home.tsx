@@ -9,7 +9,7 @@ const Home = () => {
       <GameArea>
         <BsFillLightningFill size={100} color="white" />
         <h1>Human Benchmark Made With React</h1>
-        <p>Measure your abilities with brain games and cognitive tests</p>
+        <h2>Measure your abilities with brain games and cognitive tests</h2>
         <Link to="/reaction-time">
           <button>Get Started</button>
         </Link>
