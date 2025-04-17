@@ -1,0 +1,12 @@
+.gap {
+  display: flex;
+  gap: 2rem;
+}
+
+span > span:last-child {
+  color: white;
+}
+
+span {
+  font-size: 25px;
+}

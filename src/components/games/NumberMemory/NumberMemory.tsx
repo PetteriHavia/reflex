@@ -3,6 +3,7 @@ import GameArea from "../../Layout/GameArea";
 import { GameStatus } from "../../../types";
 import { TbNumbers } from "react-icons/tb";
 import styles from "./number-memory.module.css";
+import Initial from "../gamestatus/Initial";
 
 const NumberMemory = () => {
   const [number, setNumber] = useState<string | null>(null);
@@ -31,10 +32,6 @@ const NumberMemory = () => {
     };
   }, [status]);
 
-  const handleStart = () => {
-    setStatus("Waiting");
-  };
-
   const handleReset = () => {
     setStatus("Initial");
     setScore(0);
@@ -54,14 +51,12 @@ const NumberMemory = () => {
     <GameArea>
       <>
         {status === "Initial" && (
-          <>
-            <div className="icon">
-              <TbNumbers size={80} color="white" />
-            </div>
-            <h1>Number Memory</h1>
-            <h2>The average person can remember 7 numbers at once. Can you do more?</h2>
-            <button onClick={handleStart}>Start</button>
-          </>
+          <Initial
+            setStatus={setStatus}
+            icon={<TbNumbers size={80} color="white" />}
+            title="Number Memory"
+            desc="The average person can remember 7 numbers at once. Can you do more?"
+          />
         )}
         {status === "Waiting" && <p className={styles.currentNumber}>{number}</p>}
         {status === "End" && (
