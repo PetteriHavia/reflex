@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import GameArea from "../../Layout/GameArea";
-import { GameStatus } from "../../../types";
 import Initial from "../gamestatus/Initial";
 import { LuBookA } from "react-icons/lu";
 import styles from "./verbal-memory.module.css";
 import { verbalData } from "../../../gameData";
+import useStatusFlow from "../../../hooks/useStatusFlow";
+import useGameScore from "../../../hooks/useGameScore";
 
 const VerbalMemory = () => {
-  const [status, setStatus] = useState<GameStatus>("Initial");
-  const [score, setScore] = useState<number>(0);
-  const [currentWord, setCurrentWord] = useState<string>("testing");
-  const [seenWords, setSeenWords] = useState<Array<string>>(["second"]);
-  const [lives, setLives] = useState<number>(3);
+  const [currentWord, setCurrentWord] = useState<string>("");
+  const [seenWords, setSeenWords] = useState<Array<string>>([]);
+  const { isInitial, isWaiting, isScore, setStatus, status } = useStatusFlow();
+  const { score, lives, incrementScore, decrementLives, reset, isOutOfLives } = useGameScore(0, 3);
 
   useEffect(() => {
-    if (lives <= 0 || (status === "Waiting" && seenWords.length >= verbalData.length)) {
+    if (isOutOfLives || (status === "Waiting" && seenWords.length >= verbalData.length)) {
       setStatus("Score");
+      return;
     }
     if (status === "Waiting") {
       const unseenWords = verbalData.filter((word) => !seenWords.includes(word));
@@ -28,30 +29,29 @@ const VerbalMemory = () => {
 
   const handleReset = () => {
     setStatus("Initial");
-    setScore(0);
-    setLives(3);
+    reset();
   };
 
   const checkWord = (type: string) => {
     const isSeen = seenWords.includes(currentWord);
 
     if (type === "seen" && isSeen) {
-      setScore((prev) => prev + 1);
+      incrementScore();
       return;
     }
 
     if (type === "new" && !isSeen) {
-      setScore((prev) => prev + 1);
+      incrementScore();
       setSeenWords((prev) => [...prev, currentWord]);
       return;
     }
-    setLives((prev) => prev - 1);
+    decrementLives();
   };
 
   return (
     <div>
       <GameArea>
-        {status === "Initial" && (
+        {isInitial && (
           <Initial
             setStatus={setStatus}
             icon={<LuBookA size={100} />}
@@ -59,7 +59,7 @@ const VerbalMemory = () => {
             desc="You will be shown words, one at a time. If you've seen a word during the test, click. If it's a new word, click "
           />
         )}
-        {status === "Waiting" && (
+        {isWaiting && (
           <>
             <div className={styles.gap}>
               <span>
@@ -80,7 +80,7 @@ const VerbalMemory = () => {
             </div>
           </>
         )}
-        {status === "Score" && (
+        {isScore && (
           <>
             <LuBookA size={100} />
             <h2>Verbal Memory</h2>
