@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ReactionTime from "./components/Reaction-time/ReactionTime";
 import NumberMemory from "./components/games/NumberMemory/NumberMemory";
 import VerbalMemory from "./components/games/VerbalMemory/VerbalMemory";
+import SequencyMemory from "./components/games/SequencyMemory/SequencyMemory";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/reaction-time" element={<ReactionTime />} />
         <Route path="/number-memory" element={<NumberMemory />} />
         <Route path="/verbal-memory" element={<VerbalMemory />} />
+        <Route path="/sequence-memory" element={<SequencyMemory />} />
       </Routes>
     </>
   );

@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.square {
+  background-color: var(--bg-transparent);
+  width: 132px;
+  height: 132px;
+  border-radius: 8px;
+  transition: all 0.5s;
+}
+
+span > span:last-child {
+  color: white;
+}
+
+span {
+  font-size: 25px;
+}
+
+.isActive {
+  background-color: var(--white);
+}
