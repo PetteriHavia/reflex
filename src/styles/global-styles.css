@@ -5,6 +5,7 @@
   --white: #fff;
   --white-transparent: rgba(255, 255, 255, 0.6);
   --bg-transparent: rgba(0, 0, 100, 0.2);
+  --bg-incorrect: rgba(0, 0, 0, 0.5);
   --black: #000;
   --yellow: rgb(255, 209, 84);
   --gray: #e9e9e9;

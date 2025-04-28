@@ -8,4 +8,9 @@ export type GameInfo = {
   icon: ReactNode;
 };
 
+export type Size = {
+  width: number;
+  height: number;
+};
+
 export type GameStatus = "TooFast" | "Waiting" | "End" | "Initial" | "Score";
