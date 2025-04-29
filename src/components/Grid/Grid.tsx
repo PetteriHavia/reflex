@@ -22,14 +22,14 @@ const Grid = () => {
       label: "Sequence Memory",
       link: "/sequence-memory",
       content: "Remember an increasingly long pattern of button presses.",
-      icon: <LuTarget />,
+      icon: <HiOutlineSquaresPlus />,
     },
     {
       id: 3,
       label: "Aim Trainer",
       link: "/aim-trainer",
       content: "How quickly can you hit all the targets?",
-      icon: <HiOutlineSquaresPlus />,
+      icon: <LuTarget />,
     },
     {
       id: 4,

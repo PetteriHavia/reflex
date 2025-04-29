@@ -7,6 +7,7 @@ import NumberMemory from "./components/games/NumberMemory/NumberMemory";
 import VerbalMemory from "./components/games/VerbalMemory/VerbalMemory";
 import SequencyMemory from "./components/games/SequencyMemory/SequencyMemory";
 import VisualMemory from "./components/games/VisualMemory/VisualMemory";
+import AimTrainer from "./components/games/AImTrainer/AimTrainer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/verbal-memory" element={<VerbalMemory />} />
         <Route path="/sequence-memory" element={<SequencyMemory />} />
         <Route path="/visual-memory" element={<VisualMemory />} />
+        <Route path="/aim-trainer" element={<AimTrainer />} />
       </Routes>
     </>
   );
