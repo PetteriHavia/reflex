@@ -33,8 +33,8 @@ const AimTrainer = () => {
     if (!containerRef.current) return;
     const { width, height } = containerRef.current.getBoundingClientRect();
     const newTarget = {
-      x: Math.floor(Math.random() * (width - 80)),
-      y: Math.floor(Math.random() * (height - 80)),
+      x: Math.floor(Math.random() * (width - 100)),
+      y: Math.floor(Math.random() * (height - 100)),
     };
     setTarget(newTarget);
   };
@@ -78,10 +78,12 @@ const AimTrainer = () => {
       )}
       {isWaiting && (
         <>
-          <p>Remaining {lives}</p>
+          <span>
+            Remaining <span>{lives}</span>
+          </span>
           <div ref={containerRef} className={styles.targetContainer} style={{ maxWidth: "600px", maxHeight: "400px" }}>
             <LuTarget
-              size={80}
+              size={100}
               className={styles.target}
               style={{ top: target ? `${target.y}px` : "0px", left: target ? `${target.x}px` : "0px" }}
               onClick={handleClick}
