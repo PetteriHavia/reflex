@@ -1,0 +1,16 @@
+.wrapper {
+  background: var(--white);
+  padding: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+p {
+  line-height: 1.5;
+}
