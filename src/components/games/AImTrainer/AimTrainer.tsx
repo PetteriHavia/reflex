@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import useGameScore from "../../../hooks/useGameScore";
 import useStatusFlow from "../../../hooks/useStatusFlow";
-import GameArea from "../../Layout/GameArea";
+import GameArea from "../../Layout/GameArea/GameArea";
 import Initial from "../gamestatus/Initial";
 import { LuTarget } from "react-icons/lu";
 import styles from "./aim-trainer.module.css";
+import Info from "../../Layout/Info/Info";
 
 type Coords = {
   x: number;
@@ -67,39 +68,52 @@ const AimTrainer = () => {
   };
 
   return (
-    <GameArea>
-      {isInitial && (
-        <Initial
-          icon={<LuTarget size={100} />}
-          title="Aim Trainer"
-          desc="Hit 30 targets as quickly as you can. Click the target above to begin"
-          setStatus={setStatus}
-        />
-      )}
-      {isWaiting && (
-        <>
-          <span>
-            Remaining <span>{lives}</span>
-          </span>
-          <div ref={containerRef} className={styles.targetContainer} style={{ maxWidth: "600px", maxHeight: "400px" }}>
-            <LuTarget
-              size={100}
-              className={styles.target}
-              style={{ top: target ? `${target.y}px` : "0px", left: target ? `${target.x}px` : "0px" }}
-              onClick={handleClick}
-            />
-          </div>
-        </>
-      )}
-      {isScore && (
-        <>
-          <LuTarget size={100} />
-          <h2>Average time per target</h2>
-          <h1>{timeAverage()} ms</h1>
-          <button onClick={handleReset}>Try Again</button>
-        </>
-      )}
-    </GameArea>
+    <>
+      <GameArea>
+        {isInitial && (
+          <Initial
+            icon={<LuTarget size={100} />}
+            title="Aim Trainer"
+            desc="Hit 30 targets as quickly as you can. Click the target above to begin"
+            setStatus={setStatus}
+          />
+        )}
+        {isWaiting && (
+          <>
+            <span>
+              Remaining <span>{lives}</span>
+            </span>
+            <div
+              ref={containerRef}
+              className={styles.targetContainer}
+              style={{ maxWidth: "600px", maxHeight: "400px" }}
+            >
+              <LuTarget
+                size={100}
+                className={styles.target}
+                style={{ top: target ? `${target.y}px` : "0px", left: target ? `${target.x}px` : "0px" }}
+                onClick={handleClick}
+              />
+            </div>
+          </>
+        )}
+        {isScore && (
+          <>
+            <LuTarget size={100} />
+            <h2>Average time per target</h2>
+            <h1>{timeAverage()} ms</h1>
+            <button onClick={handleReset}>Try Again</button>
+          </>
+        )}
+      </GameArea>
+      <Info>
+        <p>
+          Click the targets as quickly and accurately as you can. This tests reflexes and hand-eye coordination. Once
+          you've clicked 30 targets, your score and average time per target will be displayed. This test is best taken
+          with a mouse or tablet screen. Trackpads are difficult to score well with.
+        </p>
+      </Info>
+    </>
   );
 };
 

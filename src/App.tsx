@@ -2,12 +2,12 @@ import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import "./styles/global-styles.css";
 import Navbar from "./components/Navbar/Navbar";
-import ReactionTime from "./components/Reaction-time/ReactionTime";
+import ReactionTime from "./components/games/Reaction-time/ReactionTime";
 import NumberMemory from "./components/games/NumberMemory/NumberMemory";
 import VerbalMemory from "./components/games/VerbalMemory/VerbalMemory";
 import SequencyMemory from "./components/games/SequencyMemory/SequencyMemory";
 import VisualMemory from "./components/games/VisualMemory/VisualMemory";
-import AimTrainer from "./components/games/AImTrainer/AimTrainer";
+import AimTrainer from "./components/games/AimTrainer/AimTrainer";
 
 function App() {
   return (

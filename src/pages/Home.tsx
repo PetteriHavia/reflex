@@ -1,7 +1,7 @@
 import Grid from "../components/Grid/Grid";
 import { BsFillLightningFill } from "react-icons/bs";
 import { Link } from "react-router";
-import GameArea from "../components/Layout/GameArea";
+import GameArea from "../components/Layout/GameArea/GameArea";
 
 const Home = () => {
   return (

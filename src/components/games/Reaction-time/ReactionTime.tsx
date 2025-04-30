@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import GameArea from "../Layout/GameArea";
+import GameArea from "../../Layout/GameArea/GameArea";
 import styles from "./reaction-time.module.css";
 import { FaRegClock } from "react-icons/fa";
-import { GameStatus } from "../../types";
+import { GameStatus } from "../../../types";
 import { BsThreeDots } from "react-icons/bs";
 import { TbExclamationMark } from "react-icons/tb";
 import { HiCursorClick } from "react-icons/hi";
 import Message from "./Message";
+import Info from "../../Layout/Info/Info";
 
 const ReactionTime = () => {
   const [score, setScore] = useState<number | null>(null);
@@ -92,6 +93,19 @@ const ReactionTime = () => {
           </div>
         )}
       </GameArea>
+      <Info>
+        <p>
+          This is a simple tool to measure your reaction time. The average (median) reaction time is 273 milliseconds.{" "}
+        </p>
+        <p>
+          In addition to measuring your reaction time, this test is affected by the latency of your computer and
+          monitor. Using a fast computer and low latency / high framerate monitor will improve your score.
+        </p>
+        <p>
+          While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top.
+          Some modern TVs add as much as 150ms!
+        </p>
+      </Info>
     </div>
   );
 };

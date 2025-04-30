@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import GameArea from "../../Layout/GameArea";
+import GameArea from "../../Layout/GameArea/GameArea";
 import { TbNumbers } from "react-icons/tb";
 import styles from "./number-memory.module.css";
 import Initial from "../gamestatus/Initial";
 import useStatusFlow from "../../../hooks/useStatusFlow";
 import useGameScore from "../../../hooks/useGameScore";
+import Info from "../../Layout/Info/Info";
 
 const NumberMemory = () => {
   const [number, setNumber] = useState<string | null>(null);
@@ -50,49 +51,57 @@ const NumberMemory = () => {
   };
 
   return (
-    <GameArea>
-      {isInitial && (
-        <Initial
-          setStatus={setStatus}
-          icon={<TbNumbers size={80} color="white" />}
-          title="Number Memory"
-          desc="The average person can remember 7 numbers at once. Can you do more?"
-        />
-      )}
-      {isWaiting && <p className={styles.currentNumber}>{number}</p>}
-      {isEnd && (
-        <>
-          <div className="">
-            <h2>What was the number?</h2>
-            <span>Press enter to submit</span>
-          </div>
-          <input
-            value={previousNumber}
-            type="text"
-            autoFocus
-            onChange={(e) => setPreviousNumber(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") checkAnswer();
-            }}
+    <>
+      <GameArea>
+        {isInitial && (
+          <Initial
+            setStatus={setStatus}
+            icon={<TbNumbers size={80} color="white" />}
+            title="Number Memory"
+            desc="The average person can remember 7 numbers at once. Can you do more?"
           />
-          <button onClick={checkAnswer}>Submit</button>
-        </>
-      )}
-      {isScore && (
-        <>
-          <span>Number</span>
-          <p className={styles.numbers}>{number}</p>
-          <span>Your answer</span>
-          <p className={`${styles.numbers} ${previousNumber === number ? "" : styles.incorrect}`}>{previousNumber}</p>
-          <p className={styles.level}>Level {score}</p>
-          {previousNumber === number ? (
-            <button onClick={() => setStatus("Waiting")}>Next</button>
-          ) : (
-            <button onClick={handleReset}>Try Again</button>
-          )}
-        </>
-      )}
-    </GameArea>
+        )}
+        {isWaiting && <p className={styles.currentNumber}>{number}</p>}
+        {isEnd && (
+          <>
+            <div className="">
+              <h2>What was the number?</h2>
+              <span>Press enter to submit</span>
+            </div>
+            <input
+              value={previousNumber}
+              type="text"
+              autoFocus
+              onChange={(e) => setPreviousNumber(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") checkAnswer();
+              }}
+            />
+            <button onClick={checkAnswer}>Submit</button>
+          </>
+        )}
+        {isScore && (
+          <>
+            <span>Number</span>
+            <p className={styles.numbers}>{number}</p>
+            <span>Your answer</span>
+            <p className={`${styles.numbers} ${previousNumber === number ? "" : styles.incorrect}`}>{previousNumber}</p>
+            <p className={styles.level}>Level {score}</p>
+            {previousNumber === number ? (
+              <button onClick={() => setStatus("Waiting")}>Next</button>
+            ) : (
+              <button onClick={handleReset}>Try Again</button>
+            )}
+          </>
+        )}
+      </GameArea>
+      <Info>
+        <p>
+          The average person can only remember 7 digit numbers reliably, but it's possible to do much better using
+          mnemonic techniques. Some helpful links are provided below.
+        </p>
+      </Info>
+    </>
   );
 };
 

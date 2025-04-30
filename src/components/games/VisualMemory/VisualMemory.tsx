@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GameArea from "../../Layout/GameArea";
+import GameArea from "../../Layout/GameArea/GameArea";
 import useGameScore from "../../../hooks/useGameScore";
 import useStatusFlow from "../../../hooks/useStatusFlow";
 import Initial from "../gamestatus/Initial";
@@ -8,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import styles from "./visual-memory.module.css";
 import { Size } from "../../../types";
 import { wait } from "../../utils/wait";
+import Info from "../../Layout/Info/Info";
 
 const VisualMemory = () => {
   const [pattern, setPattern] = useState<number[]>([]);
@@ -110,49 +111,58 @@ const VisualMemory = () => {
   const gridSize = size.width * size.height;
 
   return (
-    <GameArea>
-      {isInitial && (
-        <Initial
-          title="Visual Memory Test"
-          desc="Memorize the squares"
-          setStatus={setStatus}
-          icon={<HiOutlineSquaresPlus size={100} />}
-        />
-      )}
-      {isWaiting && (
-        <>
-          <div className={styles.flexBlock}>
-            <span>Level {score}</span>
-            <span>Lives</span>
-            {Array.from({ length: 3 }).map((_, index) => (
-              <FaHeart
-                size={25}
-                key={index}
-                className={`${index < (lives ?? 0) ? styles.livesActive : styles.livesInactive}`}
-              />
-            ))}
-          </div>
-          <div className={styles.grid} style={{ gridTemplateColumns: `repeat(${size.width}, 1fr)` }}>
-            {Array.from({ length: gridSize }).map((_, index) => (
-              <div
-                key={index}
-                className={`${styles.square} ${activeSquares.includes(index) ? styles.isActive : ""} 
+    <>
+      <GameArea>
+        {isInitial && (
+          <Initial
+            title="Visual Memory Test"
+            desc="Memorize the squares"
+            setStatus={setStatus}
+            icon={<HiOutlineSquaresPlus size={100} />}
+          />
+        )}
+        {isWaiting && (
+          <>
+            <div className={styles.flexBlock}>
+              <span>Level {score}</span>
+              <span>Lives</span>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <FaHeart
+                  size={25}
+                  key={index}
+                  className={`${index < (lives ?? 0) ? styles.livesActive : styles.livesInactive}`}
+                />
+              ))}
+            </div>
+            <div className={styles.grid} style={{ gridTemplateColumns: `repeat(${size.width}, 1fr)` }}>
+              {Array.from({ length: gridSize }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`${styles.square} ${activeSquares.includes(index) ? styles.isActive : ""} 
                 ${feedbackColors[index]}`}
-                onClick={() => handlePress(index)}
-              ></div>
-            ))}
-          </div>
-        </>
-      )}
-      {isScore && (
-        <>
-          <HiOutlineSquaresPlus size={100} />
-          <h2>Visual Memory</h2>
-          <h1>Level {score}</h1>
-          <button onClick={handleReset}>Try Again</button>
-        </>
-      )}
-    </GameArea>
+                  onClick={() => handlePress(index)}
+                ></div>
+              ))}
+            </div>
+          </>
+        )}
+        {isScore && (
+          <>
+            <HiOutlineSquaresPlus size={100} />
+            <h2>Visual Memory</h2>
+            <h1>Level {score}</h1>
+            <button onClick={handleReset}>Try Again</button>
+          </>
+        )}
+      </GameArea>
+      <Info>
+        <p>
+          Every level, a number of tiles will flash white. Memorize them, and pick them again after the tiles are reset!
+          Levels get progressively more difficult, to challenge your skills. If you miss 3 tiles on a level, you lose
+          one life. You have three lives. Make it as far as you can!
+        </p>
+      </Info>
+    </>
   );
 };
 

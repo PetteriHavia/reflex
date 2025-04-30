@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import GameArea from "../../Layout/GameArea";
+import GameArea from "../../Layout/GameArea/GameArea";
 import Initial from "../gamestatus/Initial";
 import { LuBookA } from "react-icons/lu";
 import styles from "./verbal-memory.module.css";
 import { verbalData } from "../../../gameData";
 import useStatusFlow from "../../../hooks/useStatusFlow";
 import useGameScore from "../../../hooks/useGameScore";
+import Info from "../../Layout/Info/Info";
 
 const VerbalMemory = () => {
   const [currentWord, setCurrentWord] = useState<string>("");
@@ -90,6 +91,13 @@ const VerbalMemory = () => {
           </>
         )}
       </GameArea>
+      <Info>
+        <p>
+          This test measures how many words you can keep in short term memory at once. The number of words you need to
+          remember grows continually, until you can't keep them in your head anymore. Go as long as you can. You have 3
+          strikes until game over. Your score is how many turns you lasted.
+        </p>
+      </Info>
     </div>
   );
 };
